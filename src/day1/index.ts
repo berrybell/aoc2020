@@ -2,29 +2,18 @@ import { test, readInput } from "../utils/index";
 
 const prepareInput = (rawInput: string) => rawInput;
 
-const input = prepareInput(readInput());
+const input = prepareInput(readInput())
+  .split(/\n/)
+  .map((i: string) => Number(i))
+  .sort((a: number, b: number) => Number(a) - Number(b));
 
 const goA = (input) => {
-  const sortedInput: number[] = input
-    .split(/\n/)
-    .map((i: string) => Number(i))
-    .sort((a: number, b: number) => Number(a) - Number(b));
   let result: number;
 
-  let smallI = 0;
-  let largeI = sortedInput.length - 1;
-
-  for (smallI; smallI < sortedInput.length / 2; smallI++) {
-    const sum: number = sortedInput[smallI] + sortedInput[largeI];
-    console.log("sum", sum);
-    console.log("sortedInput[smallI]", sortedInput[smallI]);
-    console.log("sortedInput[largeI]", sortedInput[largeI]);
-    if (sum == 2020) {
-      result = sortedInput[smallI] * sortedInput[largeI];
-      return;
-    } else {
-      if (sum > 2020) {
-        largeI--;
+  for (const num1 of input) {
+    for (const num2 of input) {
+      if (num1 + num2 === 2020 && num1 !== num2) {
+        result = num1 * num2;
       }
     }
   }
