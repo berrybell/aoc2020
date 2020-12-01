@@ -21,12 +21,24 @@ const goA = (input) => {
 };
 
 const goB = (input) => {
-  return;
+  let result: number;
+
+  for (const num1 of input) {
+    for (const num2 of input) {
+      for (const num3 of input) {
+        if (num1 + num2 + num3 === 2020 && num1 !== num2) {
+          result = num1 * num2 * num3;
+        }
+      }
+    }
+  }
+  return result;
 };
 
 /* Tests */
 
-test(goA("1721\n979\n366\n299\n675\n1456"), 514579);
+test(goA([1721, 979, 366, 299, 675, 1456]), 514579);
+test(goB([1721, 979, 366, 299, 675, 1456]), 241861950);
 
 /* Results */
 
