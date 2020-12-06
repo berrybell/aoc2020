@@ -2,10 +2,7 @@ import {test, readInput} from "../utils/index"
 
 type PasswordRule = { min: number, max: number, sym: string, password: string }
 
-const prepareInput = (rawInput: string) => rawInput
-
-const input: PasswordRule[] = prepareInput(readInput())
-    .split(/\n/)
+const prepareInput = (rawInput: string) => rawInput.split(/\n/)
     .map(password => {
         // Example: 15-16 l: klfbblslvjclmlnqklvg
         return {
@@ -16,14 +13,14 @@ const input: PasswordRule[] = prepareInput(readInput())
         }
     })
 
+const input: PasswordRule[] = prepareInput(readInput())
+
 const goA = (input: PasswordRule[]) => {
     let counter = 0;
     for (const pw of input) {
-
-
         const {min, max, sym, password} = pw;
-        console.log(min, max, sym, password);
-        const count = (password.match(`/${sym}/g`) || []).length;
+        const regex = new RegExp(`${sym}`, "g");
+        const count = (password.match(regex) || []).length;
         if (count >= min && count <= max) counter++;
     }
     return counter;
@@ -35,7 +32,7 @@ const goB = (input) => {
 
 /* Tests */
 
-// test()
+test(goA(prepareInput("1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc")), 2);
 
 /* Results */
 
