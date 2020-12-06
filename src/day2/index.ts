@@ -26,13 +26,23 @@ const goA = (input: PasswordRule[]) => {
     return counter;
 }
 
-const goB = (input) => {
-    return
+const goB = (input: PasswordRule[]) => {
+    let counter = 0;
+    for (const pw of input) {
+        const {min, max, sym, password} = pw;
+
+        const charAtMin = password.charAt(min + 1);
+        const charAtMax = password.charAt(max + 1);
+
+        if (charAtMin !== charAtMax && (charAtMin === sym || charAtMax === sym)) counter++;
+    }
+    return counter;
 }
 
 /* Tests */
 
 test(goA(prepareInput("1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc")), 2);
+test(goB(prepareInput("1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc")), 1);
 
 /* Results */
 
