@@ -31,8 +31,8 @@ const goB = (input: PasswordRule[]) => {
     for (const pw of input) {
         const {min, max, sym, password} = pw;
 
-        const charAtMin = password.charAt(min + 1);
-        const charAtMax = password.charAt(max + 1);
+        const charAtMin = password.charAt(min - 1);
+        const charAtMax = password.charAt(max - 1);
 
         if (charAtMin !== charAtMax && (charAtMin === sym || charAtMax === sym)) counter++;
     }
