@@ -22,8 +22,43 @@ const goA = (input: string[]) => {
     return trees;
 }
 
-const goB = (input) => {
-    return
+const goB = (input: string[]) => {
+    const slopes = [{
+        right: 1,
+        down: 1
+    }, {
+        right: 3,
+        down: 1
+    }, {
+        right: 5,
+        down: 1
+    }, {
+        right: 7,
+        down: 1
+    }, {
+        right: 1,
+        down: 2
+    }]
+
+    const calculateSlope = (input, right, down) => {
+        let i = 0;
+        let trees = 0;
+        let rowLength = input[0].length - 1;
+
+        for (let j = down; j < input.length; j+= down) {
+            if ((rowLength - i) < right) {
+                i = i - rowLength - 1
+            }
+            i += right;
+
+            const pos = input[j].charAt(i);
+            if (pos === "#") trees++;
+        }
+        return trees;
+    }
+
+    return slopes.reduce((acc, curr) =>
+        acc * calculateSlope(input, curr.right, curr.down), 1);
 }
 
 /* Tests */
