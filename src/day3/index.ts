@@ -9,16 +9,14 @@ const goA = (input: string[]) => {
     let trees = 0;
     let rowLength = input[0].length - 1;
 
-    for (let j = 0; j < input.length; j++) {
-        const pos = input[j].charAt(i);
-        console.log(i, j, pos)
-        if (pos === "#") trees++;
-
+    for (let j = 1; j < input.length; j++) {
         if ((rowLength - i) < 3) {
-            i = rowLength - i
+            i = i - rowLength - 1
         }
-
         i += 3;
+
+        const pos = input[j].charAt(i);
+        if (pos === "#") trees++;
     }
 
     return trees;
