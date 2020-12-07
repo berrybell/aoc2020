@@ -4,7 +4,7 @@ const prepareInput = (rawInput: string) => rawInput.split(/\n\n/);
 
 const input = prepareInput(readInput());
 
-const fields = ["byr:", "iyr:", "eyr:", "hgt:", "hcl:", "ecl:", "pid:"];
+const fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
 
 const goA = (input: string[]) => {
     let count = 0;
@@ -15,7 +15,22 @@ const goA = (input: string[]) => {
 }
 
 const goB = (input: string[]) => {
-    return
+    let count = 0;
+
+    const validationRules = {
+        byr: new RegExp(/(19[2-9]\d)|200[0-2]/),
+        iyr: new RegExp(/20(1[0-9]|20)/),
+        eyr: new RegExp(/20(2[0-9]|30)/),
+        hgt: new RegExp(/(1([5-8][0-9]|9[0-3])cm)|((59|6[0-9]|7[0-6])in)/),
+        hcl: new RegExp(/#[0-9,a-f]{6}/),
+        ecl: new RegExp(/amb|blu|brn|gry|grn|hzl|oth/),
+        pid: new RegExp(/\d{9}/),
+    }
+
+    for (const pass of input) {
+
+    }
+    return count;
 }
 
 /* Tests */
