@@ -28,7 +28,9 @@ const goB = (input: string[]) => {
     }
 
     for (const pass of input) {
-
+        if (fields.every(field =>
+            pass.indexOf(field) !== -1 && validationRules[field].test(pass)
+        )) count++;
     }
     return count;
 }
