@@ -4,11 +4,11 @@ const prepareInput = (rawInput: string) => rawInput.split(/\n\n/);
 
 const input = prepareInput(readInput());
 
-const fields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
+const fields = ["byr:", "iyr:", "eyr:", "hgt:", "hcl:", "ecl:", "pid:"];
 
 const goA = (input: string[]) => {
     let count = 0;
-    for (const pass in input) {
+    for (const pass of input) {
         if (fields.every(field => pass.indexOf(field) !== -1)) count++;
     }
     return count;
