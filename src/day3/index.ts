@@ -10,14 +10,15 @@ const goA = (input: string[]) => {
     let rowLength = input[0].length - 1;
 
     for (let j = 0; j < input.length; j++) {
-        if (rowLength === i) {
-            i = 0;
-        } else if ((rowLength - i) < 3) {
-            i = rowLength - i
-        } else i += 3;
-
         const pos = input[j].charAt(i);
+        console.log(i, j, pos)
         if (pos === "#") trees++;
+
+        if ((rowLength - i) < 3) {
+            i = rowLength - i
+        }
+
+        i += 3;
     }
 
     return trees;
