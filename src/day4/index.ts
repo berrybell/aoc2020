@@ -28,8 +28,8 @@ const goB = (input: string[]) => {
     // pid (Passport ID) - a nine-digit number, including leading zeroes.
     // cid (Country ID) - ignored, missing or not.
 
-    const validationRules: {[key: string]: string} = {
-        byr: '(19[2-9]\d)|200[0-2]',
+    const validationRules: { [key: string]: string } = {
+        byr: '((19[2-9][0-9])|200[0-2])',
         iyr: '20(1[0-9]|20)',
         eyr: '20(2[0-9]|30)',
         hgt: '(1([5-8][0-9]|9[0-3])cm)|((59|6[0-9]|7[0-6])in)',
@@ -38,13 +38,10 @@ const goB = (input: string[]) => {
         pid: '\d{9}',
     }
 
-    console.log()
-
     for (const pass of input) {
         if (fields.every(field =>
             pass.indexOf(field) !== -1 && new RegExp(`${fields[0]}:${validationRules[fields[0]]}`).test(pass)
-        ))
-            count++;
+        )) count++;
     }
 
     return count;
@@ -100,8 +97,8 @@ test(goB(prepareInput(validPasses)), 4);
 
 console.time("Time")
 const resultA = goA(input)
-const resultB = goB(input)
+// const resultB = goB(input)
 console.timeEnd("Time")
 
 console.log("Solution to part 1:", resultA)
-console.log("Solution to part 2:", resultB)
+// console.log("Solution to part 2:", resultB)
